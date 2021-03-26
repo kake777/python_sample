@@ -4,7 +4,7 @@ import numpy as np
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-#恒等関数(あくまでも例なので値を戻しているだけ)
+#恒等関数(入力したものに対して何も手を加えずに出力する関数)
 def identity_function(x):
     return x
 
