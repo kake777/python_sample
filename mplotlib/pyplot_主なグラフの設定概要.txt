@@ -1,0 +1,80 @@
+概要
+matlib.pyplotの各グラフの一般的な設定をまとめておく。なお、カラー、線のスタイル、マーカーの設定はそれぞれ以下を参照
+
+matplotlib – color～色指定
+matplotlib – linestyle～線のスタイル
+matplotlib – markers～マーカースタイル
+
+各グラフの主な設定
+
+scatter～散布図
+
+scatter(x, y)
+    デフォルト設定で散布図を描く。
+
+scatter(x, y, marker=markerstyle, c=color)
+    マーカーの種類と色を指定。色指定はc=/color=のどちらでもよい。
+
+scatter(x, y, marker=markerstyle, s=size, color=color)
+    マーカーのサイズも指定
+
+plot～折れ線
+
+plot(x, y)
+    デフォルト設定で折れ線グラフを描く。
+
+plot(x, y, c=color)
+    線の色を設定。色指定はc=/color=のどちらでもよい
+
+plot(x, y, linestyle=linestyle, linewidth=width)
+    線のスタイルと太さを設定。
+
+plot(x, y, marker=markerstyle, markersize=size)
+    マーカーのスタイルとサイズを設定。
+
+plot(x, y, styles[, x, y, styles]...)
+    スタイル文字列を使う。スタイル文字列は、たとえば’g^--‘のように表現。複数の線をまとめて指定可能。
+
+barh～横棒グラフ
+
+barh(y, width)
+    ラベルと値を指定して棒グラフを描く。
+hist(y, width, fc, ec, linewidth)
+    塗りつぶし色、枠の色や太さを指定。
+
+hist～ヒストグラム
+
+hist(data, bins=bins, label=label)
+    ビン数を指定してヒストグラムを描く。
+
+hist(data, bins=bins, range=(min, max), color=color, edgecolor=color, linewidgh=width)
+    ビン数、レンジ、塗りつぶし色、枠線の色を指定。
+
+hist(data, density=True)
+    頻度表示で設定。デフォルトは度数表示
+
+hist(data, alpha=alpha)
+    複数のヒストグラムを重ねて描く場合の透明度をそれぞれ指定。各グラフのビン幅を揃えたいときは同じレンジを指定。
+
+hist([data1, data2,...], bins=bins, color=[c1, c2,...], label=[l1, l2,...])
+    複数のヒストグラムを重ねずに並べて描く。
+
+hist([data1, data2,...], bins=bins, stacked=True)
+    複数のヒストグラムを積み上げて描く。
+
+円グラフ
+
+pie(data, radius=r, counterclock=False, startangle=90, labels=labels, autopct=pctstring)
+    ラベルとパーセンテージの書式を指定して円グラフを描く。
+    radiusは通常デフォルトの1を使う。
+    counterclockとstartangleはいちいち指定しないといけない。
+    autopctの書式の基本形は、たとえば"%.1f"。
+    ラベルとパーセンテージの位置を、半径の割合で指定可能(labeldistance, pctdistance)
+
+pie(data, counteerclock=False, startangle=90, explode=explodelist)
+    explodeで各データの中心からの位置をリスト指定。
+    同じ小さい値を全データにい指定するとデータ間に隙間ができる。
+    特定データの値を大きくすると、そのデータのみ飛び出る。
+
+pie(data, counteerclock=False, startangle=90, wedgegroups={'linewidgh':width, 'edgecolor'=color)
+    wedgegroupsに辞書を指定して、枠線の幅と色を指定
