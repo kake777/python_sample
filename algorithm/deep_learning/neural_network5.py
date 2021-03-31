@@ -1,22 +1,8 @@
 #MNISTデータのロード処理
 from dataset.mnist import load_mnist
+from common_function import sigmoid, softmax
 import numpy as np
 import pickle
-
-#シグモイド関数の実装
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
-#ソフトマックス関数
-#※ソフトマックス関数はニューラルネットワークの学習時に使用するものであり、
-#  推論(分類)時には省略するのが一般的
-def softmax(a):
-    c = np.max(a)
-    exp_a = np.exp(a - c) #オーバーフロー対策
-    sum_exp_a = np.sum(exp_a)
-    y = exp_a / sum_exp_a
-
-    return y
 
 def get_data():
     (x_train, t_train), (x_test, t_test) =\
