@@ -1,6 +1,4 @@
-import numpy as np
 from common_function import *
-from common_function import numerical_gradient
 
 class TwoLayerNet:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):
@@ -48,11 +46,36 @@ class TwoLayerNet:
 
         return grads
 
-net = TwoLayerNet(784, 100, 10)
-print(net.params['W1'].shape)
-print(net.params['b1'].shape)
-print(net.params['W2'].shape)
-print(net.params['b2'].shape)
+    def gradient(self, x, t):
+        W1, W2 = self.params['W1'], self.params['W2']
+        b1, b2 = self.params['b1'], self.params['b2']
+        grads = {}
+        
+        batch_num = x.shape[0]
+        
+        # forward
+        a1 = np.dot(x, W1) + b1
+        z1 = sigmoid(a1)
+        a2 = np.dot(z1, W2) + b2
+        y = softmax(a2)
+        
+        # backward
+        dy = (y - t) / batch_num
+        grads['W2'] = np.dot(z1.T, dy)
+        grads['b2'] = np.sum(dy, axis=0)
+        
+        dz1 = np.dot(dy, W2.T)
+        da1 = sigmoid_grad(a1) * dz1
+        grads['W1'] = np.dot(x.T, da1)
+        grads['b1'] = np.sum(da1, axis=0)
+
+        return grads
+
+#net = TwoLayerNet(784, 100, 10)
+#print(net.params['W1'].shape)
+#print(net.params['b1'].shape)
+#print(net.params['W2'].shape)
+#print(net.params['b2'].shape)
 
 #x = np.random.rand(100, 784) # ダミーの入力データ(100枚分)
 #t = np.random.rand(100, 10)  # ダミーの教師データ(100枚分)
