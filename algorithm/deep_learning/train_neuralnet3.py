@@ -26,8 +26,7 @@ for i in range(iters_num):
     t_batch = t_train[batch_mask]
 
     # テスト用コード
-    if i % 1000 == 0:
-        print(i)
+    if i % 1000 == 0: print(i)
 
     # 勾配の計算
     #grad = network.numerical_gradient(x_batch, t_batch)

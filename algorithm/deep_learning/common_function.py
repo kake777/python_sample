@@ -30,13 +30,14 @@ def identity_function(x):
 #ソフトマックス関数
 #※ソフトマックス関数はニューラルネットワークの学習時に使用するものであり、
 #  推論(分類)時には省略するのが一般的
-def softmax(a):
-    c = np.max(a)
-    exp_a = np.exp(a - c) #オーバーフロー対策
-    sum_exp_a = np.sum(exp_a)
-    y = exp_a / sum_exp_a
-
-    return y
+def softmax(x):
+    #c = np.max(a)
+    #exp_a = np.exp(a - c) #オーバーフロー対策
+    #sum_exp_a = np.sum(exp_a)
+    #y = exp_a / sum_exp_a
+    #return y
+    x = x - np.max(x, axis=-1, keepdims=True)   # オーバーフロー対策
+    return np.exp(x) / np.sum(np.exp(x), axis=-1, keepdims=True)
 
 #2乗和誤差
 def sum_squareed_error(y, t):
