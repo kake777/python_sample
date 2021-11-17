@@ -20,7 +20,7 @@ class Relu:
         return dx
 
 # sigmoid レイヤ
-class sigmoid:
+class Sigmoid:
     def __init__(self):
         self.out = None
     
